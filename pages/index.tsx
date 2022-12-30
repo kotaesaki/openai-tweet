@@ -48,7 +48,7 @@ export default function Home() {
   };
 
   const getTwitterURL = (): string => {
-    const tweetText = `AIに「${text}」とデートするときのアドバイスをもらいました!🤖\n\n#AIDatingConsultant`;
+    const tweetText = `AIに「${text}」とデートするときのアドバイスをもらいました!🤖\n\nhttps://openai-dating.vercel.app/\n\n#AIDatingConsultant`;
     return `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
   };
 
@@ -117,7 +117,7 @@ export default function Home() {
                 size="lg"
                 onClick={onSubmit}
                 isLoading={isLoading}
-                disabled={!text}
+                disabled={!text || isLoading}
               >
                 アドバイスをもらう
               </Button>
