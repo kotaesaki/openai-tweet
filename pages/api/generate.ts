@@ -38,7 +38,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse<any>) {
       const post = await prisma.post.create({
         data: {
           target: requestText,
-          result: completion.data.choices[0].text,
+          result: completion.data.choices[0].text.replace(/\r?\n/g, ""),
         },
       });
       res.status(200).json({ id: post.id, result: completion.data.choices[0].text });
