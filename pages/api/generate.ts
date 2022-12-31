@@ -1,5 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import { Configuration, OpenAIApi } from "openai";
+import { prisma } from "../../lib/prisma";
 
 const configuration = new Configuration({
   apiKey: process.env.NEXT_PUBLIC_OPEN_AI_API_KEY,
@@ -33,6 +34,14 @@ export default async function (req: NextApiRequest, res: NextApiResponse<any>) {
       temperature: 0.73,
       max_tokens: 400,
     });
+    if (completion.data.choices[0].text) {
+      await prisma.post.create({
+        data: {
+          target: requestText,
+          result: completion.data.choices[0].text,
+        },
+      });
+    }
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch (e: any) {
     if (e.response) {
