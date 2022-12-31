@@ -32,7 +32,7 @@ export default function Posts({ post }: TProps) {
         <title>AI Dating Consultant</title>
         <meta
           name="description"
-          content={`https://my-og-img.vercel.app/api/og?title=「${post.target}」とデートする時のアドバイスをください`}
+          content={`https://openai-dating.vercel.app/api/og?title=「${post.target}」とデートする時のアドバイスをください`}
         />
       </Head>
       <Layout>
