@@ -10,22 +10,16 @@ type TProps = {
   post: Post;
 };
 
-export async function getStaticProps(context: any) {
+export async function getServerSideProps(context: any) {
   const { id } = context.params;
   const post = await prisma.post.findUnique({
     where: { id },
   });
   return {
     props: { post: JSON.parse(JSON.stringify(post)) },
-    revalidate: 10,
   };
 }
-export async function getStaticPaths() {
-  return {
-    paths: [],
-    fallback: "blocking",
-  };
-}
+
 export default function Posts({ post }: TProps) {
   const getTwitterURL = (): string => {
     const postText: string = post.result.substr(0, 80) + "...";
