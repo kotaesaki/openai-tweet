@@ -30,7 +30,7 @@ export default function ogHandle(req: NextRequest) {
           }}
         >
           {title}
-          <div style={{ fontSize: 24 }}>AI Dating Consultant🤖</div>
+          <div style={{ fontSize: 24 }}>AI Dating Consultant</div>
         </div>
       ),
       {
