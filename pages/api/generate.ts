@@ -35,14 +35,14 @@ export default async function (req: NextApiRequest, res: NextApiResponse<any>) {
       max_tokens: 400,
     });
     if (completion.data.choices[0].text) {
-      await prisma.post.create({
+      const post = await prisma.post.create({
         data: {
           target: requestText,
           result: completion.data.choices[0].text,
         },
       });
+      res.status(200).json({ id: post.id, result: completion.data.choices[0].text });
     }
-    res.status(200).json({ result: completion.data.choices[0].text });
   } catch (e: any) {
     if (e.response) {
       console.error(e.response.status, e.response.data);
