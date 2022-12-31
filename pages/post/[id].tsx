@@ -10,23 +10,20 @@ type TProps = {
   post: Post;
 };
 
-export async function getStaticProps() {
-  const post = await prisma.post.findFirst();
+export async function getStaticProps(context: any) {
+  const { id } = context.params;
+  const post = await prisma.post.findUnique({
+    where: { id },
+  });
   return {
     props: { post: JSON.parse(JSON.stringify(post)) },
+    revalidate: 10,
   };
 }
 export async function getStaticPaths() {
-  const posts = await prisma.post.findMany();
   return {
-    paths: posts.map((p) => {
-      return {
-        params: {
-          id: p.id,
-        },
-      };
-    }),
-    fallback: false,
+    paths: [],
+    fallback: "blocking",
   };
 }
 export default function Posts({ post }: TProps) {

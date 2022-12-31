@@ -17,7 +17,7 @@ export const Layout = ({ children }: TProps) => {
               AI Dating Consultant
             </Heading>
             <Heading as="h2" size="xs">
-              デートの話題をAIからアドバイスをもらえる
+              AIからデートのアドバイスをもらえるサービス
             </Heading>
           </Flex>
         </Link>
