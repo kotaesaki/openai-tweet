@@ -30,10 +30,16 @@ export default function Posts({ post }: TProps) {
     <>
       <Head>
         <title>AI Dating Consultant</title>
+        <meta property="og:title" content="AI Dating Consultant" />
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={`https://openai-dating.vercel.app/post/${post.id}`} />
         <meta
           property="og:image"
           content={`https://openai-dating.vercel.app/api/og?title=「${post.target}」とデートする時のアドバイスをください`}
         />
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="og:site_name" content="AI Dating Consultant" />
+        <meta property="og:description" content="AIがデートのアドバイスをくれます" />
       </Head>
       <Layout>
         <Flex direction="column" align="center" mx="6">
